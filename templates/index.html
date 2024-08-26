@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/assets/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="/static/assets/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="/static/assets/css/style.css">
+
+    <title>Sign Up</title>
+  </head>
+  <body>
+  
+
+  <div class="d-lg-flex half">
+    <div class="bg order-1 order-md-2" style="background-image: url('/static/assets/images/bg_1.jpg');"></div>
+    <div class="contents order-2 order-md-1">
+
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-7">
+            <div class="mb-4">
+              <h3>Signup</h3>
+            </div>
+            {% if msg|length %}
+              <div class="alert alert-success">
+                  {{ msg }}
+              </div>
+            {% endif %}
+            <form action="{{ url_for('signup') }}" method="post">
+              <div class="form-group first">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email">
+              </div><br/>
+              <div class="form-group">
+                <label for="password">Username</label>
+                <input type="text" class="form-control" name="username">
+              </div><br/>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password">
+              </div><br/>
+              <div class="form-group last mb-3">
+                <label for="re-password">Phone</label>
+                <input type="phone" class="form-control" name="phone">
+              </div><br/>
+              <div class="form-group last mb-3">
+                <label for="re-password">Address</label>
+                <input type="text" class="form-control" name="address">
+              </div>
+              <button class="btn btn-block btn-primary" type="submit">Signup</button>
+              <p>Already have account <a href="{{ url_for('login') }}">click here</a> to login</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+    
+    
+
+    <script src="/static/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/assets/js/popper.min.js"></script>
+    <script src="/static/assets/js/bootstrap.min.js"></script>
+    <script src="/static/assets/js/main.js"></script>
+  </body>
+</html>

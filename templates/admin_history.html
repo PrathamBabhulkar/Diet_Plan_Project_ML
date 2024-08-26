@@ -1,0 +1,86 @@
+
+{% include 'admin_headerfile.html' %}
+
+{% include 'adm_navbar.html' %}
+
+
+<style>
+    .converter-page__title[data-v-04b06bb4] {
+  color: #282f3a;
+  font-weight: 900;
+  font-size: 3em;
+  line-height: 58px;
+  text-align: center;
+  margin-top: 50px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: auto;
+}
+</style>
+
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div >
+            <h1 data-v-04b06bb4="" class="h1 converter-page__title">
+              History
+            </h1>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {% if msg|length %}
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        <strong>{{ msg }}</strong>
+                    </div>
+                {% endif %}
+                <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Index Number</th>
+                        <th>Text</th>
+                        <th>Result</th>
+                        <th>Timestamp</th>
+                        <th>Download</th>
+                        <th>Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for data in profilelist %}
+                        <tr>
+                            <td>{{loop.index}}</td>
+                            <td>{{data.text}}</td>
+
+                            <td>
+                                <img src="{{ url_for('static', filename='results/' + data.image) }}" class="img-fluid" alt="Detection Result" height="200px" width="200px">
+                            </td>
+                            <td>{{data.date}}</td>
+
+                            <td>
+                                <a href="{{ url_for('download_file', filename=data.image) }}" class="btn btn-outline-success">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-download" viewBox="0 0 16 16">
+                                        <path d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2m2.354 6.854-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5a.5.5 0 0 1 1 0v3.793l1.146-1.147a.5.5 0 0 1 .708.708"></path>
+                                    </svg>
+                                    Download
+                                </a>
+                            </td>
+
+                            <td>
+                                <form action="{{ url_for('delete_data_admin', id=data.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                    <button type="submit" class="btn btn-outline-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"></path>
+                                        </svg>
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+        </div><br/>
+    </div>
+

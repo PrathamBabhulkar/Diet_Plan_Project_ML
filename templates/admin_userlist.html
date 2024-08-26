@@ -1,0 +1,59 @@
+
+{% include 'admin_headerfile.html' %}
+
+{% include 'adm_navbar.html' %}
+
+<style>
+    .converter-page__title[data-v-04b06bb4] {
+  color: #282f3a;
+  font-weight: 900;
+  font-size: 3em;
+  line-height: 58px;
+  text-align: center;
+  margin-top: 50px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: auto;
+}
+</style>
+
+    <div class="container">
+        <div >
+            <h1 data-v-04b06bb4="" class="h1 converter-page__title">
+              User List
+            </h1>
+        </div>
+        <br>
+
+<!--      <a href="#" class="btn btn-info  btn-lg" style="">+</a>-->
+        <div style="overflow-x:auto;">
+            <table class="table table-hover" >
+              <tr>
+                  <th>User Number</th>
+                  <th>User Profile</th>
+                  <th>User Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Address</th>
+              </tr>
+
+                {% for n in profilelist %}
+
+              <tr>
+                <td>{{loop.index}}</td>
+                <td>
+                    <i class="bi bi-person-check" style="font-size: 5rem; color: #ff5733;">
+                </td>
+                <td>{{n.username}}</td>
+                <td>{{n.email}}</td>
+                <td>{{n.phone}}</td>
+                <td>{{n.address}}</td>
+              </tr>
+
+                {% endfor %}
+
+
+            </table>
+        </div>
+      </div>
+

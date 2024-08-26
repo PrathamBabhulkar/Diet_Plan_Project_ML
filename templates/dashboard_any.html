@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<style>
+    .loader {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: inline-block;
+        border-top: 4px solid #FFF;
+        border-right: 4px solid transparent;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+        display: none; /* Hidden by default */
+    }
+    .loader::after {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border-left: 4px solid #FF3D00;
+        border-bottom: 4px solid transparent;
+        animation: rotation 0.5s linear infinite reverse;
+    }
+    @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<style>
+    .converter-page__title[data-v-04b06bb4] {
+  color: #e1791e;
+  font-weight: 900;
+  font-size: 3em;
+  line-height: 58px;
+  text-align: center;
+  margin-top: 50px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: auto;
+}
+</style>
+
+<div class="container-fluid">
+    <div >
+            <h1 data-v-04b06bb4="" class="h1 converter-page__title">
+              Conversion Results
+            </h1>
+    </div>
+    <br>
+    <center>
+    <div class="row">
+        <div class="col-md-12">
+            {% if image_filename %}
+            <h3>Uploaded Image:</h3>
+            <img src="{{ url_for('static', filename='uploads/' + image_filename) }}" class="img-fluid" alt="Uploaded Image">
+            {% endif %}
+            <form id="translationForm" action="{{ url_for('dashboard_any') }}" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="lang">Select Language</label>
+                    <select class="form-control col-md-4" name="lang" id="lang" style="width:50%;">
+                        <option value="english">English</option>
+                        <option value="hindi">Hindi</option>
+                        <option value="marathi">Marathi</option>
+                        <option value="french">French</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="german">German</option>
+                        <option value="chinese">Chinese</option>
+                        <option value="japanese">Japanese</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Enter Text</label>
+                    <input type="text" class="form-control col-md-6" name="txt" placeholder="Enter Text...">
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+                <div class="text-center">
+                    <span id="loader" class="loader"></span>
+                </div>
+            </form>
+            {% if detection_result %}
+            <h3>Detection Result:</h3>
+            <img src="{{ url_for('static', filename='results/' + detection_result) }}" class="img-fluid" alt="Detection Result">
+            {% endif %}
+        </div>
+    </div>
+    </center>
+</div>
+
+<script>
+    document.getElementById('translationForm').addEventListener('submit', function() {
+        document.getElementById('loader').style.display = 'inline-block'; // Show loader
+    });
+</script>
+
+{% endblock %}

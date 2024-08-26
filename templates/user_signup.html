@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Update</title>
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/assets/login_style.css">
+</head>
+<body>
+
+<div class="formbg-outer">
+    <br><br><br>
+          <div class="formbg">
+            <div class="formbg-inner padding-horizontal--48">
+              <span class="padding-bottom--15">Sign up to your account</span>
+				<style>
+    /* The alert message box */
+    .alert {
+        padding: 20px;
+        background-color: green; /* Red */
+        color: white;
+        margin-bottom: 15px;
+    }
+
+    /* The close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* When moving the mouse over the close button */
+    .closebtn:hover {
+        color: black;
+    }
+</style>
+                <center>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <center>
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        </center>
+    {% endif %}
+{% endwith %}
+</center>
+              <form id="stripe-login" action="{{ url_for('signup') }}" method="post">
+
+                <div class="field padding-bottom--24" >
+                  <label for="email">Username</label>
+                  <input type="text" name="username">
+                </div>
+
+                <div class="field padding-bottom--24" >
+                  <label for="email">Email</label>
+                  <input type="email" name="email">
+                </div>
+                <div class="field padding-bottom--24">
+                  <div class="grid--50-50">
+                    <label for="password">Password</label>
+                    <div class="reset-pass">
+                      <a href="#">Forgot your password?</a>
+                    </div>
+                  </div>
+                  <input type="password" name="password">
+                </div>
+
+                <div class="field padding-bottom--24" >
+                  <label for="email">Mobile</label>
+                  <input type="text" name="phone">
+                </div>
+
+                <div class="field padding-bottom--24" >
+                  <label for="email">Address</label>
+                  <input type="text" name="address">
+                </div>
+
+                <div class="field padding-bottom--24">
+                  <input type="submit" name="submit" value="Signup">
+                </div>
+
+              </form>
+            </div>
+          </div>
+          <div class="footer-link padding-top--24">
+
+            <span>Do have an account? <a href="{{ url_for('login') }}">click here</a> to login</span>
+
+            <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
+              <span><a href="#">© Scripttoscene</a></span>
+              <span><a href="#">Contact</a></span>
+              <span><a href="#">Privacy & terms</a></span>
+            </div>
+          </div>
+        </div>
+
+</body>
+</html>
